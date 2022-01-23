@@ -5,7 +5,13 @@ const controller = require("./controller");
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    response.success(req, res, 'List of Messages');
+    controller.getMessages()
+        .then((data) => {
+            response.success(req, res, data, 200);
+        })
+        .catch(e => {
+            response.error(req, res, "Unexpected Error", 500, "Unexpeted Error");
+        });
 });
 
 router.post('/', (req, res) => {
