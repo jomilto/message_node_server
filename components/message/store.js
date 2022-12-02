@@ -34,5 +34,6 @@ async function updateText(id, text) {
 
 module.exports = {
     add: addMessage,
-    list: getMessages
+    list: getMessages,
+    updateText: updateText
 }

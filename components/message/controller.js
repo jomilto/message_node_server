@@ -35,5 +35,6 @@ function updateMessage(id, message) {
 
 module.exports = {
     addMessage,
-    getMessages
+    getMessages,
+    updateMessage
 }
