@@ -5,7 +5,7 @@ function addMessage(user, message) {
     return new Promise((resolve, reject) => {
         if (!user || !message) {
             console.log("[messageController] Incomplete data.")
-            reject("Incomplete data");
+            return reject("Incomplete data");
         }
         const fullMessage = {
             user: user,
@@ -13,13 +13,23 @@ function addMessage(user, message) {
             date: new Date()
         };
         store.add(fullMessage);
-        resolve(fullMessage);
+        return resolve(fullMessage);
     });
 }
 
 function getMessages() {
     return new Promise((resolve, reject) => {
-        resolve(store.list());
+        return resolve(store.list());
+    });
+}
+
+function updateMessage(id, message) {
+    return new Promise(async (resolve, reject) => {
+        if (!id || !message) {
+            return reject('Invalid Data');
+        }
+        const result = await store.updateText(id, message);
+        return resolve(result);
     });
 }
 
