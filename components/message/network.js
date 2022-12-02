@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/:id', function (req, res) {
-    controller.updateMessage(req.params.id, req.body.text)
+    controller.updateMessage(req.params.id, req.body.message)
     .then((data) => {
         response.success(req, res, data, 200)
     })
