@@ -15,10 +15,8 @@ db.connect("mongodb+srv:///messages?retryWrites=true&w=majority", options)
     });
 
 function addMessage(message) {
-    // list.push(message);
     const myMessage = new Model(message);
     myMessage.save();
-    // return myMessage;
 }
 
 async function getMessages() {
