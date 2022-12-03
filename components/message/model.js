@@ -15,6 +15,7 @@ const mySchema = new Schema({
         type: String,
         require: true
     },
+    file: String,
     date: Date
 });
 
