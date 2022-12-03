@@ -5,8 +5,8 @@ const controller = require("./controller");
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const filterByUsername = req.query.user || null;
-    controller.getMessages(filterByUsername)
+    const filterMessage = req.query.chat || null;
+    controller.getMessages(filterMessage)
         .then((data) => {
             response.success(req, res, data, 200);
         })
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const body = req.body;
-    controller.addMessage(body.user, body.message)
+    controller.addMessage(body.chat, body.user, body.message)
         .then((data) => {
             response.success(req, res, data, 201);
         })

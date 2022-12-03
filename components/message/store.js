@@ -6,11 +6,11 @@ async function addMessage(message) {
     return newMessage;
 }
 
-function getMessages(filterByUsername) {
+function getMessages(filterMessage) {
     return new Promise ((resolve, reject) => {
         let filter = {};
-        if (filterByUsername) {
-            filter = { user: filterByUsername }
+        if (filterMessage) {
+            filter = { chat: filterMessage }
         }
         let messages = Model.find(filter)
         .populate('user')

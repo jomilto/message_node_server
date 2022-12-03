@@ -1,15 +1,16 @@
 const store = require("./store");
 
-function addMessage(user, message) {
+function addMessage(chat, user, message) {
 
     return new Promise(async (resolve, reject) => {
-        if (!user || !message) {
+        if (!chat || !user || !message) {
             console.log("[messageController] Incomplete data.")
             return reject("Incomplete data");
         }
         const fullMessage = {
-            user: user,
-            message: message,
+            chat,
+            user,
+            message,
             date: new Date()
         };
         const newMessage = await store.add(fullMessage);
@@ -17,9 +18,9 @@ function addMessage(user, message) {
     });
 }
 
-function getMessages(filterByUsername) {
+function getMessages(filterMessage) {
     return new Promise((resolve, reject) => {
-        return resolve(store.list(filterByUsername));
+        return resolve(store.list(filterMessage));
     });
 }
 
