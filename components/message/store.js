@@ -25,8 +25,12 @@ async function addMessage(message) {
     return newMessage;
 }
 
-async function getMessages() {
-    let messages = await Model.find();
+async function getMessages(filterByUsername) {
+    let filter = {};
+    if (filterByUsername) {
+        filter = { user: filterByUsername }
+    }
+    let messages = await Model.find(filter);
     return messages;
 }
 
