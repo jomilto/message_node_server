@@ -2,7 +2,7 @@ const store = require("./store");
 
 function addMessage(user, message) {
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         if (!user || !message) {
             console.log("[messageController] Incomplete data.")
             return reject("Incomplete data");
@@ -12,8 +12,8 @@ function addMessage(user, message) {
             message: message,
             date: new Date()
         };
-        store.add(fullMessage);
-        return resolve(fullMessage);
+        const newMessage = await store.add(fullMessage);
+        return resolve(newMessage);
     });
 }
 

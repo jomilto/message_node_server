@@ -6,17 +6,23 @@ const options = {
     keepAlive: 1,
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    authSource: "admin",
+    user: "superroot",
+    pass: "superroot123",
+    retryWrites: true,
+    w: "majority"
 };
 
-db.connect("mongodb+srv:///messages?retryWrites=true&w=majority", options)
+db.connect("mongodb://localhost:27017/messages", options)
     .then(() => console.log('DB connected'))
     .catch((err) => {
         console.log(err);
     });
 
-function addMessage(message) {
+async function addMessage(message) {
     const myMessage = new Model(message);
-    myMessage.save();
+    const newMessage = await myMessage.save();
+    return newMessage;
 }
 
 async function getMessages() {
