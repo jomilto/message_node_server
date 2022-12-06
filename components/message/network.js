@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', upload.single('file'), (req, res) => {
-    console.log(req.file)
     const body = req.body;
     controller.addMessage(body.chat, body.user, body.message, req.file)
         .then((data) => {
