@@ -6,9 +6,10 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const socket = require("./socket");
 const db = require('./db.js');
+const config = require('./config');
 
 const router = require("./network/routes");
-db('mongodb://localhost:27017/telegrom');
+db(config.DB_URL);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 socket.connect(server);
 router(app);
-app.use('/app', express.static('public'));
+app.use(config.PUBLIC_ROUTE , express.static('public'));
 
-server.listen(3000, function () {
-  console.log("Listening on http://localhost:3000");
+server.listen(config.PORT, function () {
+  console.log("Listening on " + config.HOST+ ":" + config.PORT);
 });
